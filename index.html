@@ -100,7 +100,133 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
-    // Start your code here
+    // ─────── Start your code here ───────
+
+    // (1) Console Log
+    errorBtns[0].addEventListener('click', () => {
+      console.log('🔷 console.log demo:', {
+        first: document.querySelector('#first-num').value,
+        second: document.querySelector('#second-num').value,
+        operator: document.querySelector('#operator').value
+      });
+    });
+
+    // (2) Console Error
+    errorBtns[1].addEventListener('click', () => {
+      console.error('🔴 console.error demo: Something went wrong!', {
+        timestamp: new Date().toISOString()
+      });
+    });
+
+    // (3) Console Count
+    // Each time you click, it will increment the “Count:” counter.
+    errorBtns[2].addEventListener('click', () => {
+      console.count('Count:');
+    });
+
+    // (4) Console Warn
+    errorBtns[3].addEventListener('click', () => {
+      console.warn('⚠️ console.warn demo: Just a warning!');
+    });
+
+    // (5) Console Assert
+    // Illustrate a failed assertion (this condition is always false).
+    errorBtns[4].addEventListener('click', () => {
+      console.assert(
+        false,
+        '❌ console.assert demo: This assertion failed (false).'
+      );
+    });
+
+    // (6) Console Clear
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+      console.log('🧹 console.clear demo: Console was cleared.');
+    });
+
+    // (7) Console Dir
+    // Prints a JS object’s properties as an interactive tree.
+    errorBtns[6].addEventListener('click', () => {
+      const demoObj = {
+        user: 'Alice',
+        age: 30,
+        hobbies: ['reading', 'gardening', 'gaming'],
+        nested: { a: 1, b: 2 }
+      };
+      console.dir(demoObj);
+    });
+
+    // (8) Console DirXML
+    // Prints the HTML/XML representation of a DOM node.
+    errorBtns[7].addEventListener('click', () => {
+      const fieldset = document.querySelector('fieldset');
+      console.dirxml(fieldset);
+    });
+
+    // (9) Console Group Start
+    // Opens a new console group (not collapsed).
+    errorBtns[8].addEventListener('click', () => {
+      console.group('📂 Group Start: Sample Group');
+      console.log('  • Item 1 inside group');
+      console.log('  • Item 2 inside group');
+      console.log('  • Item 3 inside group');
+      // Leave it open; you can group more logs until you call groupEnd().
+    });
+
+    // (10) Console Group End
+    // Closes the most recently opened group.
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd('📂 Group End: Sample Group');
+    });
+
+    // (11) Console Table
+    // Displays an array of objects in a table view.
+    errorBtns[10].addEventListener('click', () => {
+      const fruitArray = [
+        { fruit: 'Apple', color: 'Red', qty: 5 },
+        { fruit: 'Banana', color: 'Yellow', qty: 12 },
+        { fruit: 'Cherry', color: 'Red', qty: 20 }
+      ];
+      console.table(fruitArray);
+    });
+
+    // (12) Start Timer
+    // Begin a timer labeled “demoTimer”.
+    errorBtns[11].addEventListener('click', () => {
+      console.time('demoTimer');
+      console.log('⏱️ Timer “demoTimer” started.');
+    });
+
+    // (13) End Timer
+    // Ends the timer labeled “demoTimer” and prints the elapsed time.
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('demoTimer');
+    });
+
+    // (14) Console Trace
+    // Prints a stack trace of how we got here.
+    function levelOne() {
+      levelTwo();
+    }
+    function levelTwo() {
+      levelThree();
+    }
+    function levelThree() {
+      console.trace('🔍 console.trace demo: call stack');
+    }
+    errorBtns[13].addEventListener('click', () => {
+      levelOne();
+    });
+
+    // (15) Trigger a Global Error
+    // This will throw a TypeError that (if you’ve set up window.onerror or TrackJS) 
+    // will be caught by your global handler instead of crashing the entire script.
+    errorBtns[14].addEventListener('click', () => {
+      // Calling a method on null always throws:
+      null.someUndefinedFunction();
+    });
+
+   
     // You may move this JS to another file if you wish
   </script>
 </body>
